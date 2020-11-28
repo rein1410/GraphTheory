@@ -77,9 +77,9 @@
             this.dinh.AutoSize = true;
             this.dinh.Location = new System.Drawing.Point(484, 21);
             this.dinh.Name = "dinh";
-            this.dinh.Size = new System.Drawing.Size(50, 13);
+            this.dinh.Size = new System.Drawing.Size(51, 13);
             this.dinh.TabIndex = 4;
-            this.dinh.Text = "Số đinh: ";
+            this.dinh.Text = "Số Đinh: ";
             // 
             // mat
             // 

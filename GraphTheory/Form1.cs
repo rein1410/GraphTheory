@@ -63,7 +63,7 @@ namespace GraphTheory
                             }
                             i++;
                         }
-                        dinh.Text += sodinh.ToString();
+                        dinh.Text = "Số Đỉnh: " + sodinh.ToString();
                         mat.Text = "Ma Trận: " + "\n" + input;
                     }
                 }
