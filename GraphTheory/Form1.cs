@@ -44,9 +44,16 @@ namespace GraphTheory
             }
             try
             {
-                if (Convert.ToInt32(richTextBox1.Text.Substring(0, 1)) < 2) //Thoát nếu < 2 dỉnh
+                StringReader sr = new StringReader(richTextBox1.Text);
+                int vertexNumber = Convert.ToInt32(sr.ReadLine());
+                if (vertexNumber < 2) //Thoát nếu < 2 dỉnh
                 {
                     MessageBox.Show("Ma trận phải có ít nhất 2 dỉnh !", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                if (vertexNumber > 100)
+                {
+                    MessageBox.Show("Ma trận tối đa 100 dỉnh !", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
                 //Tạo đồ thị dựa trên richTextBox, tên đặt bằng thời gian tao.
@@ -70,15 +77,18 @@ namespace GraphTheory
                 {
                     if (ofd.ShowDialog() == DialogResult.OK)
                     {
-                        richTextBox1.Text = File.ReadAllText(ofd.FileName);
-                        StreamReader sr = new StreamReader(ofd.FileName); 
-                        Graph.vertexNumber = Convert.ToInt32(sr.ReadLine());
-                        if (Graph.vertexNumber <= 1)
+                        StreamReader sr = new StreamReader(ofd.FileName);
+                        int vertexNumber = Convert.ToInt32(sr.ReadLine());
+                        if (vertexNumber <= 1)
                         {
-                            //showMatrix.Rows.Clear(); //xóa hàng cho bảng matrix
-                            //showMatrix.Columns.Clear(); //xóa cột cho bảng matrix
                             MessageBox.Show("Ma trận phải có ít nhất 2 dỉnh !", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
+                        if (vertexNumber > 100)
+                        {
+                            MessageBox.Show("Ma trận tối đa 100 dỉnh !", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                        richTextBox1.Text = File.ReadAllText(ofd.FileName);
+                        Graph.vertexNumber = vertexNumber;
                         string input = sr.ReadToEnd().Trim('\r', '\n');
                         int i = 0; int j = 0;
                         Graph.matrix = new int[Graph.vertexNumber, Graph.vertexNumber];
