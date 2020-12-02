@@ -51,9 +51,11 @@
             // 
             // richTextBox1
             // 
+            this.richTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.richTextBox1.Font = new System.Drawing.Font("Consolas", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.richTextBox1.Location = new System.Drawing.Point(6, 19);
             this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(293, 187);
+            this.richTextBox1.Size = new System.Drawing.Size(308, 187);
             this.richTextBox1.TabIndex = 0;
             this.richTextBox1.Text = "";
             // 
@@ -61,42 +63,43 @@
             // 
             this.StatusLbl.AutoSize = true;
             this.StatusLbl.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.StatusLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.StatusLbl.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.StatusLbl.ForeColor = System.Drawing.Color.DarkRed;
             this.StatusLbl.Location = new System.Drawing.Point(12, 236);
             this.StatusLbl.Name = "StatusLbl";
-            this.StatusLbl.Size = new System.Drawing.Size(0, 16);
+            this.StatusLbl.Size = new System.Drawing.Size(0, 19);
             this.StatusLbl.TabIndex = 3;
             // 
             // dinh
             // 
             this.dinh.AutoSize = true;
-            this.dinh.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dinh.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dinh.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.dinh.Location = new System.Drawing.Point(360, 34);
+            this.dinh.Location = new System.Drawing.Point(359, 28);
             this.dinh.Name = "dinh";
-            this.dinh.Size = new System.Drawing.Size(60, 13);
+            this.dinh.Size = new System.Drawing.Size(62, 19);
             this.dinh.TabIndex = 4;
-            this.dinh.Text = "Số Đinh: ";
+            this.dinh.Text = "Số Đỉnh:";
             // 
             // printPicture
             // 
             this.printPicture.BackColor = System.Drawing.Color.White;
             this.printPicture.Location = new System.Drawing.Point(363, 50);
             this.printPicture.Name = "printPicture";
-            this.printPicture.Size = new System.Drawing.Size(411, 300);
+            this.printPicture.Size = new System.Drawing.Size(458, 458);
             this.printPicture.TabIndex = 7;
             this.printPicture.TabStop = false;
             this.printPicture.MouseMove += new System.Windows.Forms.MouseEventHandler(this.printPicture_MouseMove);
             // 
             // menuStrip1
             // 
+            this.menuStrip1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(149)))), ((int)(((byte)(165)))), ((int)(((byte)(166)))));
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.saveGraphToolStripMenuItem,
             this.openToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(791, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(844, 24);
             this.menuStrip1.TabIndex = 8;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -117,9 +120,10 @@
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.richTextBox1);
+            this.groupBox1.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(12, 27);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(307, 225);
+            this.groupBox1.Size = new System.Drawing.Size(328, 225);
             this.groupBox1.TabIndex = 9;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Nhập ma trận";
@@ -128,11 +132,12 @@
             // 
             this.start.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.start.Enabled = false;
+            this.start.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.start.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.start.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.start.Location = new System.Drawing.Point(18, 307);
+            this.start.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.start.Location = new System.Drawing.Point(18, 306);
             this.start.Name = "start";
-            this.start.Size = new System.Drawing.Size(213, 29);
+            this.start.Size = new System.Drawing.Size(237, 29);
             this.start.TabIndex = 76;
             this.start.Text = "Bắt đầu";
             this.start.UseVisualStyleBackColor = false;
@@ -141,43 +146,43 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label3.Location = new System.Drawing.Point(120, 274);
+            this.label3.Location = new System.Drawing.Point(134, 274);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(57, 16);
+            this.label3.Size = new System.Drawing.Size(67, 19);
             this.label3.TabIndex = 75;
             this.label3.Text = "đến đỉnh";
             // 
             // cbDHeadVertex
             // 
             this.cbDHeadVertex.Enabled = false;
-            this.cbDHeadVertex.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbDHeadVertex.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbDHeadVertex.FormattingEnabled = true;
-            this.cbDHeadVertex.Location = new System.Drawing.Point(69, 268);
+            this.cbDHeadVertex.Location = new System.Drawing.Point(80, 270);
             this.cbDHeadVertex.Name = "cbDHeadVertex";
-            this.cbDHeadVertex.Size = new System.Drawing.Size(48, 28);
+            this.cbDHeadVertex.Size = new System.Drawing.Size(48, 27);
             this.cbDHeadVertex.TabIndex = 74;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.label5.Location = new System.Drawing.Point(15, 274);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(52, 16);
+            this.label5.Size = new System.Drawing.Size(59, 19);
             this.label5.TabIndex = 73;
             this.label5.Text = "Từ đỉnh";
             // 
             // cbDTailVertex
             // 
             this.cbDTailVertex.Enabled = false;
-            this.cbDTailVertex.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbDTailVertex.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbDTailVertex.FormattingEnabled = true;
-            this.cbDTailVertex.Location = new System.Drawing.Point(183, 268);
+            this.cbDTailVertex.Location = new System.Drawing.Point(207, 270);
             this.cbDTailVertex.Name = "cbDTailVertex";
-            this.cbDTailVertex.Size = new System.Drawing.Size(48, 28);
+            this.cbDTailVertex.Size = new System.Drawing.Size(48, 27);
             this.cbDTailVertex.TabIndex = 72;
             // 
             // logShow
@@ -192,20 +197,22 @@
             // 
             // rtbLog
             // 
+            this.rtbLog.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.rtbLog.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rtbLog.Location = new System.Drawing.Point(18, 357);
             this.rtbLog.Name = "rtbLog";
-            this.rtbLog.Size = new System.Drawing.Size(227, 151);
+            this.rtbLog.Size = new System.Drawing.Size(308, 151);
             this.rtbLog.TabIndex = 77;
             this.rtbLog.Text = "";
             // 
             // button1
             // 
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.button1.Location = new System.Drawing.Point(244, 268);
+            this.button1.Location = new System.Drawing.Point(261, 270);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 68);
+            this.button1.Size = new System.Drawing.Size(65, 65);
             this.button1.TabIndex = 79;
             this.button1.Text = "Load";
             this.button1.UseVisualStyleBackColor = true;
@@ -215,8 +222,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.ClientSize = new System.Drawing.Size(791, 527);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(240)))), ((int)(((byte)(241)))));
+            this.ClientSize = new System.Drawing.Size(844, 526);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.logShow);
             this.Controls.Add(this.rtbLog);
@@ -231,9 +238,12 @@
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.groupBox1);
             this.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MainMenuStrip = this.menuStrip1;
+            this.MaximizeBox = false;
             this.Name = "Form1";
             this.ShowIcon = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "GraphTheory";
             ((System.ComponentModel.ISupportInitialize)(this.printPicture)).EndInit();
             this.menuStrip1.ResumeLayout(false);
