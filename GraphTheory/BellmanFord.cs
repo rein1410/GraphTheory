@@ -63,11 +63,11 @@ namespace GraphTheory
                 }
             }
             rtb.Text = "";
-            move(D, before, x, y, rtb, matrix, graph, draw, bm, vertex, f); //thực hiện vẽ đường đi
+            move(D, before, x, y, rtb, matrix, graph, draw, bm, vertex, f, x, y); //thực hiện vẽ đường đi
         }
 
         //hàm vẽ đường đi
-        private void move(int[] d, int[] before, int m, int n, RichTextBox rtb, Matrix matrix, Graphics graph, Draw draw, Bitmap bm, Vertex vertex, Form1 f)
+        private void move(int[] d, int[] before, int m, int n, RichTextBox rtb, Matrix matrix, Graphics graph, Draw draw, Bitmap bm, Vertex vertex, Form1 f, float x, float y)
         {
             int[] A = new int[matrix._iNMatrix]; //tạo 1 mảng A độ rộng là số đỉnh
             int k = n, i = 0; //tạo 2 biên k và i với k là đỉnh cuối và i = 0

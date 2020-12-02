@@ -34,7 +34,7 @@ namespace GraphTheory
         Vertex vertex;
         Bitmap bm;
         Check check;
-
+        public bool mouseLeft = true; //BIẾN KIỂM TRA XEM BẠN ĐÃ "THẢ" CHUỘT RA CHƯA HAY VẪN CÒN NHẤP GIỮ CHUỘT.
         private void writeGr_Click(object sender, EventArgs e)
         {
             if (richTextBox1.Text.Replace(" ","") == string.Empty) //Thoát nếu rỗng
@@ -103,7 +103,17 @@ namespace GraphTheory
                             i++;
                         }
                         dinh.Text = "Số Đỉnh: " + Graph.vertexNumber.ToString();
-                        mat.Text = "Ma Trận: " + "\n" + input;
+                        /********************************************************************************************
+                        * 
+                        *       HIỂN THỊ MA TRẬN TRỌNG SỐ LÊN "dShowMatrix"
+                        * 
+                        ********************************************************************************************/
+                        cbDHeadVertex.Enabled = cbDTailVertex.Enabled = true;
+                        for (int k = 0; k < Graph.vertexNumber; k++)
+                        {
+                            cbDHeadVertex.Items.Add(k); //thêm số vô đỉnh xuất phát
+                            cbDTailVertex.Items.Add(k); //thêm số vô đỉnh kết thúc
+                        }
                         /********************************************************************************************
                         * 
                         *       HIỂN THỊ ĐỒ THỊ LÊN KHUNG PICTUREBOX
@@ -126,6 +136,44 @@ namespace GraphTheory
                 MessageBox.Show(ex.Message);
             }
         }
-    }
+        private void printPicture_MouseMove(object sender, MouseEventArgs e) //tạo sự kiện di chuyển chuột
+        {
+            if (draw != null)
+            {
+                if (e.Button == MouseButtons.None)
+                {
+                    draw.resetUsingPoint(); //xóa toàn bộ các điểm hoạt động của chuột trên hình vẽ
+                    mouseLeft = false; //tắt chuột trái
+                }
+                else if (e.Button == MouseButtons.Left && e.X >= 0 && e.Y >= 0 && (e.X <= printPicture.Width) && (e.Y <= printPicture.Height)) //event chuột trái chỉ được phép nằm trong khung printPicture
+                {
+                    draw.Drag(e.Location, e, matrix, graph); //dùng drag để vẽ lại các vị trí của event
+                    mouseLeft = true;
+                    printPicture.Image = bm;
+                    printPicture.Show(); //gán ra màn hình
+                }
+                if (mouseLeft) //nếu mouseLeft = true
+                {
+                    printPicture.Image = bm;
+                    printPicture.Show(); //hiển thị ra
+                }
+            }
+        }
 
+        private void start_Click(object sender, EventArgs e)
+        {
+
+            graph.Clear(Color.Black);
+            draw.drawGraph(matrix._iMatrix, matrix._iNMatrix, graph);
+            printPicture.Image = bm;
+            check = new Check(matrix);
+            check.checkingConnection(matrix, draw, graph, bm, this);
+            Thread.Sleep(500);
+            BellmanFord FB = new BellmanFord(Graph.vertexNumber, Graph.matrix);
+            int head = Convert.ToInt32(cbDHeadVertex.Text); //tạo biến nhận điểm đầu từ combobox
+            int tail = Convert.ToInt32(cbDTailVertex.Text); //tạo biến nhận điểm cuối từ combobox
+            FB.FordBellman(matrix, rtbLog, head, tail, graph, draw, bm, vertex, this);
+            MessageBox.Show("Đã duyệt xong!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+    }
 }
