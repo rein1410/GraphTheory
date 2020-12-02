@@ -51,9 +51,9 @@ namespace GraphTheory
                     MessageBox.Show("Ma trận phải có ít nhất 2 dỉnh !", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
-                if (vertexNumber > 100)
+                if (vertexNumber > 10)
                 {
-                    MessageBox.Show("Ma trận tối đa 100 dỉnh !", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Ma trận tối đa 10 dỉnh !", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
                 //Tạo đồ thị dựa trên richTextBox, tên đặt bằng thời gian tao.
@@ -82,10 +82,12 @@ namespace GraphTheory
                         if (vertexNumber <= 1)
                         {
                             MessageBox.Show("Ma trận phải có ít nhất 2 dỉnh !", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return;
                         }
-                        if (vertexNumber > 100)
+                        if (vertexNumber > 10)
                         {
-                            MessageBox.Show("Ma trận tối đa 100 dỉnh !", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show("Ma trận tối đa 10 dỉnh !", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return;
                         }
                         richTextBox1.Text = File.ReadAllText(ofd.FileName);
                         Graph.vertexNumber = vertexNumber;
