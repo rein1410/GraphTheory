@@ -43,6 +43,7 @@
             this.cbDTailVertex = new System.Windows.Forms.ComboBox();
             this.logShow = new System.Windows.Forms.Label();
             this.rtbLog = new System.Windows.Forms.RichTextBox();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.printPicture)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -70,10 +71,11 @@
             // dinh
             // 
             this.dinh.AutoSize = true;
+            this.dinh.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dinh.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.dinh.Location = new System.Drawing.Point(360, 34);
             this.dinh.Name = "dinh";
-            this.dinh.Size = new System.Drawing.Size(51, 13);
+            this.dinh.Size = new System.Drawing.Size(60, 13);
             this.dinh.TabIndex = 4;
             this.dinh.Text = "Số Đinh: ";
             // 
@@ -125,6 +127,7 @@
             // start
             // 
             this.start.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.start.Enabled = false;
             this.start.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.start.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.start.Location = new System.Drawing.Point(18, 307);
@@ -192,16 +195,29 @@
             this.rtbLog.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rtbLog.Location = new System.Drawing.Point(18, 357);
             this.rtbLog.Name = "rtbLog";
-            this.rtbLog.Size = new System.Drawing.Size(227, 198);
+            this.rtbLog.Size = new System.Drawing.Size(227, 151);
             this.rtbLog.TabIndex = 77;
             this.rtbLog.Text = "";
+            // 
+            // button1
+            // 
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.button1.Location = new System.Drawing.Point(244, 268);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 68);
+            this.button1.TabIndex = 79;
+            this.button1.Text = "Load";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.loadGr_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.ClientSize = new System.Drawing.Size(791, 567);
+            this.ClientSize = new System.Drawing.Size(791, 527);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.logShow);
             this.Controls.Add(this.rtbLog);
             this.Controls.Add(this.start);
@@ -231,8 +247,6 @@
         #endregion
 
         private System.Windows.Forms.RichTextBox richTextBox1;
-        private System.Windows.Forms.Label StatusLbl;
-        private System.Windows.Forms.Label dinh;
         public System.Windows.Forms.PictureBox printPicture;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem saveGraphToolStripMenuItem;
@@ -245,6 +259,9 @@
         public System.Windows.Forms.ComboBox cbDTailVertex;
         private System.Windows.Forms.Label logShow;
         public System.Windows.Forms.RichTextBox rtbLog;
+        private System.Windows.Forms.Button button1;
+        public System.Windows.Forms.Label StatusLbl;
+        public System.Windows.Forms.Label dinh;
     }
 }
 

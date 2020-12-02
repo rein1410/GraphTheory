@@ -27,14 +27,47 @@ namespace GraphTheory
         *       TẠO CÁC BIẾN THEO CLASS
         * 
         ********************************************************************************************/
-
         Graphics graph;
         Draw draw;
-        Matrix matrix;
+        Matrix matrix = new Matrix();
         Vertex vertex;
         Bitmap bm;
         Check check;
         public bool mouseLeft = true; //BIẾN KIỂM TRA XEM BẠN ĐÃ "THẢ" CHUỘT RA CHƯA HAY VẪN CÒN NHẤP GIỮ CHUỘT.
+        string checkMatch;
+        public void enableControls()
+        {
+            /********************************************************************************************
+            * 
+            *       MỞ ĐIỀU KHIỂN DUYỆT MA TRẬN
+            * 
+            ********************************************************************************************/
+            cbDHeadVertex.Enabled = cbDTailVertex.Enabled = start.Enabled = true; //Mở điều khiển duyệt ma trận
+            cbDHeadVertex.Items.Clear();
+            cbDTailVertex.Items.Clear();
+            for (int k = 0; k < Graph.vertexNumber; k++)
+            {
+                cbDHeadVertex.Items.Add(k); //thêm số vô đỉnh xuất phát
+                cbDTailVertex.Items.Add(k); //thêm số vô đỉnh kết thúc
+            }
+            cbDHeadVertex.SelectedIndex = cbDTailVertex.SelectedIndex = 0;
+        }
+        public void generateGraph()
+        {
+            /********************************************************************************************
+            * 
+            *       HIỂN THỊ ĐỒ THỊ LÊN KHUNG PICTUREBOX
+            * 
+            ********************************************************************************************/
+            matrix = new Matrix();
+            matrix.inputMatrixFromGRAPHClass();
+            graph.Clear(Color.Black);
+            draw = new Draw(matrix);
+            draw.drawGraph(matrix._iMatrix, matrix._iNMatrix, graph);
+            printPicture.Image = bm;
+            printPicture.Show();
+            printPicture.Enabled = true;
+        }
         private void writeGr_Click(object sender, EventArgs e)
         {
             if (richTextBox1.Text.Replace(" ","") == string.Empty) //Thoát nếu rỗng
@@ -78,60 +111,11 @@ namespace GraphTheory
                     if (ofd.ShowDialog() == DialogResult.OK)
                     {
                         StreamReader sr = new StreamReader(ofd.FileName);
-                        int vertexNumber = Convert.ToInt32(sr.ReadLine());
-                        if (vertexNumber <= 1)
-                        {
-                            MessageBox.Show("Ma trận phải có ít nhất 2 dỉnh !", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            return;
-                        }
-                        if (vertexNumber > 10)
-                        {
-                            MessageBox.Show("Ma trận tối đa 10 dỉnh !", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            return;
-                        }
                         richTextBox1.Text = File.ReadAllText(ofd.FileName);
-                        Graph.vertexNumber = vertexNumber;
-                        string input = sr.ReadToEnd().Trim('\r', '\n');
-                        int i = 0; int j = 0;
-                        Graph.matrix = new int[Graph.vertexNumber, Graph.vertexNumber];
-                        foreach (var row in input.Split('\n'))
-                        {
-                            j = 0;
-                            foreach (var col in row.Trim().Split(' '))
-                            {
-                                Graph.matrix[i, j] = int.Parse(col.Trim());
-                                j++;
-                            }
-                            i++;
-                        }
-                        dinh.Text = "Số Đỉnh: " + Graph.vertexNumber.ToString();
-                        /********************************************************************************************
-                        * 
-                        *       HIỂN THỊ MA TRẬN TRỌNG SỐ LÊN "dShowMatrix"
-                        * 
-                        ********************************************************************************************/
-                        cbDHeadVertex.Enabled = cbDTailVertex.Enabled = true;
-                        for (int k = 0; k < Graph.vertexNumber; k++)
-                        {
-                            cbDHeadVertex.Items.Add(k); //thêm số vô đỉnh xuất phát
-                            cbDTailVertex.Items.Add(k); //thêm số vô đỉnh kết thúc
-                        }
-                        /********************************************************************************************
-                        * 
-                        *       HIỂN THỊ ĐỒ THỊ LÊN KHUNG PICTUREBOX
-                        * 
-                        ********************************************************************************************/
-                        matrix = new Matrix();
-                        matrix.inputMatrixFromGRAPHClass();
-                        graph.Clear(Color.Black);
-                        draw = new Draw(matrix);
-                        draw.drawGraph(matrix._iMatrix, matrix._iNMatrix, graph);
-                        printPicture.Image = bm;
-                        printPicture.Show();
-                        printPicture.Enabled = true;
                     }
+                    matrix.readGraph(richTextBox1.Text, this); //Đọc ma trận từ richtextbox
+                    checkMatch = richTextBox1.Text; //tránh reload lại đồ thị nếu trùng
                 }
-                StatusLbl.Text = "Đọc file thành công. ";
             }
             catch (Exception ex)
             {
@@ -161,7 +145,6 @@ namespace GraphTheory
                 }
             }
         }
-
         private void start_Click(object sender, EventArgs e)
         {
 
@@ -176,6 +159,21 @@ namespace GraphTheory
             int tail = Convert.ToInt32(cbDTailVertex.Text); //tạo biến nhận điểm cuối từ combobox
             FB.FordBellman(matrix, rtbLog, head, tail, graph, draw, bm, vertex, this);
             MessageBox.Show("Đã duyệt xong!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+        private void loadGr_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (richTextBox1.Text != checkMatch)
+                {
+                    matrix.readGraph(richTextBox1.Text, this);
+                    checkMatch = richTextBox1.Text; //tránh reload lại đồ thị nếu trùng
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }

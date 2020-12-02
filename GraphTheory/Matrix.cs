@@ -29,28 +29,54 @@ namespace GraphTheory
                 }
             }
         }
-
-        string str; //biến chuỗi kí tự đọc từ hàm readline
-        string[] S; //biến mảng chuỗi mà mỗi phần tử cách nhau bởi ' '
-
-        //hàm nhập ma trận từ tệp
-        public void inputMatrixFromFile(string path)
+        //hàm nhập ma trận từ string
+        public void readGraph(string rtb, Form1 frm)
         {
-            FileStream f = new FileStream(path, FileMode.Open);
-            StreamReader sr = new StreamReader(f);
-            _iNMatrix = Convert.ToInt32(sr.ReadLine());
-            _iMatrix = new int[_iNMatrix, _iNMatrix];
-            for (int i = 0; i < _iNMatrix; i++)
+            if (rtb.Replace(" ", "") == string.Empty) //Thoát nếu rỗng
             {
-                str = sr.ReadLine();
-                S = str.Split(' ');
-                for (int j = 0; j < _iNMatrix; j++)
+                MessageBox.Show("Ma trận trống !", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            try
+            {
+                //Đọc đồ thị và dán dữ liệu vào richTextBox.
+                using (StringReader sr = new StringReader(rtb))
                 {
-                    _iMatrix[i, j] = Convert.ToInt32(S[j]);
+                    int vertexNumber = Convert.ToInt32(sr.ReadLine());
+                    if (vertexNumber < 2)
+                    {
+                        MessageBox.Show("Ma trận phải có ít nhất 2 dỉnh !", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+                    if (vertexNumber > 10)
+                    {
+                        MessageBox.Show("Ma trận tối đa 10 dỉnh !", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+                    Graph.vertexNumber = vertexNumber;
+                    string input = sr.ReadToEnd().Trim('\r', '\n');
+                    int i = 0; int j = 0;
+                    Graph.matrix = new int[Graph.vertexNumber, Graph.vertexNumber];
+                    foreach (var row in input.Split('\n'))
+                    {
+                        j = 0;
+                        foreach (var col in row.Trim().Split(' '))
+                        {
+                            Graph.matrix[i, j] = int.Parse(col.Trim());
+                            j++;
+                        }
+                        i++;
+                    }
+                    frm.enableControls();
+                    frm.generateGraph();
+                    frm.dinh.Text = "Số Đỉnh: " + Graph.vertexNumber.ToString();
+                    frm.StatusLbl.Text = "Đọc file thành công. ";
                 }
             }
-            sr.Dispose();
-            f.Dispose();
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }
