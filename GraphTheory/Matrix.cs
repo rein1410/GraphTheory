@@ -48,9 +48,9 @@ namespace GraphTheory
                         MessageBox.Show("Ma trận phải có ít nhất 2 dỉnh !", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
-                    if (vertexNumber > 10)
+                    if (vertexNumber > 100)
                     {
-                        MessageBox.Show("Ma trận tối đa 10 dỉnh !", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("Ma trận tối đa 100 dỉnh !", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
                     Graph.vertexNumber = vertexNumber;
