@@ -84,9 +84,9 @@ namespace GraphTheory
                     MessageBox.Show("Ma trận phải có ít nhất 2 dỉnh !", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
-                if (vertexNumber > 10)
+                if (vertexNumber > 100)
                 {
-                    MessageBox.Show("Ma trận tối đa 10 dỉnh !", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Ma trận tối đa 100 dỉnh !", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
                 //Tạo đồ thị dựa trên richTextBox, tên đặt bằng thời gian tao.
@@ -113,7 +113,7 @@ namespace GraphTheory
                         StreamReader sr = new StreamReader(ofd.FileName);
                         richTextBox1.Text = File.ReadAllText(ofd.FileName);
                     }
-                    matrix.readGraph(richTextBox1.Text, this); //Đọc ma trận từ richtextbox
+                    matrix.readGraph(richTextBox1.Text.Replace(",",""), this); //Đọc ma trận từ richtextbox
                     checkMatch = richTextBox1.Text; //tránh reload lại đồ thị nếu trùng
                 }
             }
@@ -166,7 +166,7 @@ namespace GraphTheory
             {
                 if (richTextBox1.Text != checkMatch)
                 {
-                    matrix.readGraph(richTextBox1.Text, this);
+                    matrix.readGraph(richTextBox1.Text.Replace(",",""), this);
                     checkMatch = richTextBox1.Text; //tránh reload lại đồ thị nếu trùng
                 }
             }
