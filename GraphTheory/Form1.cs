@@ -70,30 +70,26 @@ namespace GraphTheory
         }
         private void writeGr_Click(object sender, EventArgs e)
         {
-            if (richTextBox1.Text.Replace(" ","") == string.Empty) //Thoát nếu rỗng
+            if (Graph.matrix == null)
             {
-                MessageBox.Show("Ma trận trống !", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Không có gì để lưu! Bạn đã load đồ thị chưa?", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
-            }
+            }    
             try
             {
-                StringReader sr = new StringReader(richTextBox1.Text);
-                int vertexNumber = Convert.ToInt32(sr.ReadLine());
-                if (vertexNumber < 2) //Thoát nếu < 2 dỉnh
+                using (SaveFileDialog sfd = new SaveFileDialog())
                 {
-                    MessageBox.Show("Ma trận phải có ít nhất 2 dỉnh !", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
+                    sfd.InitialDirectory = Application.StartupPath + "\\Graphs\\";
+                    sfd.Filter = "Text Document|*.txt";
+                    if (sfd.ShowDialog() == DialogResult.OK)
+                    {
+                        Stream fs = sfd.OpenFile();
+                        StreamWriter sw = new StreamWriter(fs);
+                        sw.Write(matrix.exportGraph(Graph.matrix));
+                        sw.Close();
+                        fs.Close();
+                    }    
                 }
-                if (vertexNumber > 100)
-                {
-                    MessageBox.Show("Ma trận tối đa 100 dỉnh !", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-                //Tạo đồ thị dựa trên richTextBox, tên đặt bằng thời gian tao.
-                StreamWriter sw = new StreamWriter(Application.StartupPath + "\\Graphs\\" + string.Format("{0:yyyy-MM-dd_hh-mm-ss-tt}.txt", DateTime.Now));
-                sw.WriteLine(richTextBox1.Text.Trim('\r', '\n'));
-                sw.Close();
-                StatusLbl.Text = "Tạo Graph thành công !";
             }
             catch (Exception ex)
             {

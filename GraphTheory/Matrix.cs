@@ -78,5 +78,22 @@ namespace GraphTheory
                 MessageBox.Show(ex.Message);
             }
         }
+        public string exportGraph(int[,] array2D) //HÀM DÙNG ĐỂ XUẤT GRAPH TỪ HÌNH VẼ
+        {
+            string result = "";
+            result += Graph.vertexNumber + "\n";
+            int i = 0;
+            foreach (int n in array2D)
+            {
+                i++;
+                result += n + " ";
+                if (i == Graph.vertexNumber)
+                {
+                    result += "\n";
+                    i = 0;
+                }
+            }
+            return result;
+        }
     }
 }
