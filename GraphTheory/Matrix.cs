@@ -30,7 +30,7 @@ namespace GraphTheory
             }
         }
         //hàm nhập ma trận từ string
-        public void readGraph(string rtb, Form1 frm)
+        public void readGraph(string rtb, int vertexNumber, Form1 frm)
         {
             if (rtb.Replace(" ", "") == string.Empty) //Thoát nếu rỗng
             {
@@ -42,7 +42,6 @@ namespace GraphTheory
                 //Đọc đồ thị và dán dữ liệu vào richTextBox.
                 using (StringReader sr = new StringReader(rtb))
                 {
-                    int vertexNumber = Convert.ToInt32(sr.ReadLine());
                     if (vertexNumber < 2)
                     {
                         MessageBox.Show("Ma trận phải có ít nhất 2 dỉnh !", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -70,7 +69,6 @@ namespace GraphTheory
                     frm.enableControls();
                     frm.generateGraph();
                     frm.dinh.Text = "Số Đỉnh: " + Graph.vertexNumber.ToString();
-                    frm.StatusLbl.Text = "Đọc file thành công. ";
                 }
             }
             catch (Exception ex)

@@ -12,12 +12,12 @@ namespace GraphTheory
     {
         public Vertex _vHead, _vTail; //khai báo đỉnh đầu và đỉnh cuối
         public float _fWeight; //trọng số
-        public Color _cColor = Color.YellowGreen; //tạo màu vàng xanh
+        public Color _cColor = Color.AliceBlue; //tạo màu vàng xanh
 
         //Constructor
         public Edge()
         {
-            _cColor = Color.YellowGreen;
+            _cColor = Color.AliceBlue;
             _fWeight = 0;
         }
 

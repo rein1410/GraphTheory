@@ -13,7 +13,7 @@ namespace GraphTheory
         public PointF _pVertex;//đỉnh
         public Color _cColor1 = Color.GreenYellow; //tạo 1 lớp màu cho đỉnh đó
         public Color _cColor2 = Color.Gray; //tạo lớp màu thứ 2
-        public Color _cColor3 = Color.GreenYellow; //tạo lớp màu thứ 3
+        public Color _cColor3 = Color.LightSlateGray; //tạo lớp màu thứ 3
         public int _iVerNum; //số trên đỉnh
         public int _isDel = 0; //cho biết đã bị xóa chưa, 1 - đã bị xóa, 0 - chưa bị xóa
 

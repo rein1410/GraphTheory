@@ -30,11 +30,11 @@ namespace GraphTheory
         {
             if (_vVertex[vertex._iVerNum]._isDel == 0) //nếu biến _vVertex[số trên đỉnh] mà chưa bị xóa thì
             {
-                graph.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
+                graph.SmoothingMode = SmoothingMode.HighQuality;
                 graph.DrawEllipse(new Pen(Brushes.White), vertex._pVertex.X, vertex._pVertex.Y, 0, 0); //kích thước đỉnh
                 graph.FillEllipse(new SolidBrush(vertex._cColor2), vertex._pVertex.X - 15, vertex._pVertex.Y - 15, 30, 30); //lớp màu xám
-                graph.FillEllipse(new SolidBrush(vertex._cColor3), vertex._pVertex.X - 12, vertex._pVertex.Y - 12, 24, 24); //lớp màu lá mạ
-                graph.DrawString(vertex._iVerNum.ToString(), new Font(FontFamily.GenericSansSerif, 13, FontStyle.Bold, GraphicsUnit.Pixel, 8, false), Brushes.Blue, vertex._pVertex.X + 5f - 10, vertex._pVertex.Y + 3f - 10); //số bên trong vòng tròn
+                graph.FillEllipse(new SolidBrush(vertex._cColor3), vertex._pVertex.X - 12, vertex._pVertex.Y - 12, 24, 24); //lớp màu xám nhạt
+                graph.DrawString(vertex._iVerNum.ToString(), new Font(FontFamily.GenericSansSerif, 13, FontStyle.Bold, GraphicsUnit.Pixel, 8, false), Brushes.WhiteSmoke, vertex._pVertex.X + 5f - 10, vertex._pVertex.Y + 3f - 10); //số bên trong vòng tròn
             }
         }
 
@@ -43,7 +43,7 @@ namespace GraphTheory
             Pen p = new Pen(color, 2f);
             graph.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
             graph.DrawLine(p, edge._vHead._pVertex.X, edge._vHead._pVertex.Y, edge._vTail._pVertex.X, edge._vTail._pVertex.Y);
-            graph.DrawString(edge._fWeight.ToString(), new Font(FontFamily.GenericMonospace, 16, FontStyle.Bold, GraphicsUnit.Pixel, 8, true), Brushes.White, ((edge._vHead._pVertex.X + edge._vTail._pVertex.X) / 2 - 5f), ((edge._vHead._pVertex.Y + edge._vTail._pVertex.Y) / 2 - 5f)); //số bên trong cạnh
+            graph.DrawString(edge._fWeight.ToString(), new Font(FontFamily.GenericMonospace, 16, FontStyle.Bold, GraphicsUnit.Pixel, 8, true), Brushes.WhiteSmoke, ((edge._vHead._pVertex.X + edge._vTail._pVertex.X) / 2 - 5f), ((edge._vHead._pVertex.Y + edge._vTail._pVertex.Y) / 2 - 5f)); //số bên trong cạnh
         }
 
         public void drawGraph(int[,] matrix, int nMatrix, Graphics graph) //hàm vẽ đồ thị
@@ -63,7 +63,7 @@ namespace GraphTheory
                     if (matrix[j, k] != matrix[0, 0] && j < k)
                     {
                         _eEdge[c] = new Edge(_vVertex[j], _vVertex[k], matrix[j, k]); //gán biến cạnh từ class
-                        drawEdge(graph, Color.DarkOliveGreen, _eEdge[c]); //vẽ cạnh
+                        drawEdge(graph, Color.DarkSlateGray, _eEdge[c]); //vẽ cạnh
                         c++; //tăng c
                     }
                 }
@@ -116,7 +116,7 @@ namespace GraphTheory
         {
             graph.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
             graph.DrawEllipse(new Pen(Brushes.White), _vVertex[vertex]._pVertex.X - 25, _vVertex[vertex]._pVertex.Y - 25, 50, 50);
-            graph.FillEllipse(new SolidBrush(Color.Red), _vVertex[vertex]._pVertex.X - 15, _vVertex[vertex]._pVertex.Y - 15, 30, 30);
+            graph.FillEllipse(new SolidBrush(Color.DodgerBlue), _vVertex[vertex]._pVertex.X - 15, _vVertex[vertex]._pVertex.Y - 15, 30, 30);
             graph.DrawString(_vVertex[vertex]._iVerNum.ToString(), new Font(FontFamily.GenericSansSerif, 13, FontStyle.Bold, GraphicsUnit.Pixel, 9, false), Brushes.Yellow, _vVertex[vertex]._pVertex.X + 5f - 10, _vVertex[vertex]._pVertex.Y + 3f - 10);
         }
 
@@ -147,7 +147,7 @@ namespace GraphTheory
         {
             if (matrix._iMatrix[head, tail] != matrix._iMatrix[0, 0])
             {
-                Pen p = new Pen(Color.Aqua, 2f);
+                Pen p = new Pen(Color.Red, 2f);
                 Edge edge = new Edge(_vVertex[head], _vVertex[tail], matrix._iMatrix[head, tail]);
                 graph.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
                 graph.DrawLine(p, edge._vHead._pVertex.X, edge._vHead._pVertex.Y, edge._vTail._pVertex.X, edge._vTail._pVertex.Y);

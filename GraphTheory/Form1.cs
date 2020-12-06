@@ -34,7 +34,6 @@ namespace GraphTheory
         Bitmap bm;
         Check check;
         public bool mouseLeft = true; //BIẾN KIỂM TRA XEM BẠN ĐÃ "THẢ" CHUỘT RA CHƯA HAY VẪN CÒN NHẤP GIỮ CHUỘT.
-        string checkMatch;
         public void enableControls()
         {
             /********************************************************************************************
@@ -59,7 +58,6 @@ namespace GraphTheory
             *       HIỂN THỊ ĐỒ THỊ LÊN KHUNG PICTUREBOX
             * 
             ********************************************************************************************/
-            matrix = new Matrix();
             matrix.inputMatrixFromGRAPHClass();
             graph.Clear(Color.Black);
             draw = new Draw(matrix);
@@ -97,20 +95,27 @@ namespace GraphTheory
             }
         }
 
-        private void readGr_Click(object sender, EventArgs e)
+        private void readGr_Click(object sender, EventArgs e) //HÀM MỞ ĐỒ THỊ TỪ FILE
         {
             try
             {
-                //Đọc đồ thị và dán dữ liệu vào richTextBox.
                 using (OpenFileDialog ofd = new OpenFileDialog())
                 {
+                    string input;
+                    int vertexNumber;
+                    string Mat;
+                    ofd.InitialDirectory = Application.StartupPath + "\\Graphs\\";
+                    ofd.Filter = "Text Files (*.txt)|*.txt";
                     if (ofd.ShowDialog() == DialogResult.OK)
                     {
                         StreamReader sr = new StreamReader(ofd.FileName);
-                        richTextBox1.Text = File.ReadAllText(ofd.FileName);
+                        input = File.ReadAllText(ofd.FileName); //đọc input
+                        StringReader str = new StringReader(input); //khai biến stringreader
+                        vertexNumber = Convert.ToInt32(sr.ReadLine()); //đọc số đỉnh
+                        Mat = sr.ReadToEnd().Trim('\r', '\n'); //đọc ma trận
                     }
-                    matrix.readGraph(richTextBox1.Text.Replace(",",""), this); //Đọc ma trận từ richtextbox
-                    checkMatch = richTextBox1.Text; //tránh reload lại đồ thị nếu trùng
+                    else return;
+                    matrix.readGraph(Mat.Replace(",",""), vertexNumber, this);
                 }
             }
             catch (Exception ex)
@@ -156,20 +161,10 @@ namespace GraphTheory
             FB.FordBellman(matrix, rtbLog, head, tail, graph, draw, bm, vertex, this);
             MessageBox.Show("Đã duyệt xong!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
-        private void loadGr_Click(object sender, EventArgs e)
+        private void NewGraph(object sender, EventArgs e)
         {
-            try
-            {
-                if (richTextBox1.Text != checkMatch)
-                {
-                    matrix.readGraph(richTextBox1.Text.Replace(",",""), this);
-                    checkMatch = richTextBox1.Text; //tránh reload lại đồ thị nếu trùng
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+            AddMat am = new AddMat(this);
+            am.Show();
         }
     }
 }
