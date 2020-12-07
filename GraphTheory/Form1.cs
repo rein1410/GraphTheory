@@ -63,8 +63,6 @@ namespace GraphTheory
             draw = new Draw(matrix);
             draw.drawGraph(matrix._iMatrix, matrix._iNMatrix, graph);
             printPicture.Image = bm;
-            printPicture.Show();
-            printPicture.Enabled = true;
         }
         private void writeGr_Click(object sender, EventArgs e)
         {
@@ -164,7 +162,17 @@ namespace GraphTheory
         private void NewGraph(object sender, EventArgs e)
         {
             AddMat am = new AddMat(this);
-            am.Show();
+            am.ShowDialog();
+        }
+
+        private void Form1_Resize(object sender, EventArgs e)
+        {
+            if (WindowState == FormWindowState.Maximized)
+            {
+                bm = new Bitmap(this.printPicture.Width, this.printPicture.Height);
+                graph = Graphics.FromImage(bm);
+            }
+            this.Resize -= Form1_Resize;
         }
     }
 }
