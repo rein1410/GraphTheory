@@ -43,6 +43,9 @@
             this.cbDTailVertex = new System.Windows.Forms.ComboBox();
             this.logShow = new System.Windows.Forms.Label();
             this.rtbLog = new System.Windows.Forms.RichTextBox();
+            this.addVtx = new System.Windows.Forms.Button();
+            this.deleteVtx = new System.Windows.Forms.Button();
+            this.addEdge = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.printPicture)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -141,6 +144,7 @@
             // 
             // cbDHeadVertex
             // 
+            this.cbDHeadVertex.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbDHeadVertex.Enabled = false;
             this.cbDHeadVertex.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbDHeadVertex.FormattingEnabled = true;
@@ -162,6 +166,7 @@
             // 
             // cbDTailVertex
             // 
+            this.cbDTailVertex.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbDTailVertex.Enabled = false;
             this.cbDTailVertex.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbDTailVertex.FormattingEnabled = true;
@@ -191,12 +196,54 @@
             this.rtbLog.TabIndex = 77;
             this.rtbLog.Text = "";
             // 
+            // addVtx
+            // 
+            this.addVtx.Enabled = false;
+            this.addVtx.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.addVtx.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.addVtx.Location = new System.Drawing.Point(12, 348);
+            this.addVtx.Name = "addVtx";
+            this.addVtx.Size = new System.Drawing.Size(75, 75);
+            this.addVtx.TabIndex = 79;
+            this.addVtx.Text = "Thêm đỉnh";
+            this.addVtx.UseVisualStyleBackColor = true;
+            this.addVtx.Click += new System.EventHandler(this.addVtx_Click);
+            // 
+            // deleteVtx
+            // 
+            this.deleteVtx.Enabled = false;
+            this.deleteVtx.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.deleteVtx.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.deleteVtx.Location = new System.Drawing.Point(129, 348);
+            this.deleteVtx.Name = "deleteVtx";
+            this.deleteVtx.Size = new System.Drawing.Size(75, 75);
+            this.deleteVtx.TabIndex = 80;
+            this.deleteVtx.Text = "Xoá đỉnh";
+            this.deleteVtx.UseVisualStyleBackColor = true;
+            this.deleteVtx.Click += new System.EventHandler(this.deleteVtx_Click);
+            // 
+            // addEdge
+            // 
+            this.addEdge.Enabled = false;
+            this.addEdge.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.addEdge.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.addEdge.Location = new System.Drawing.Point(246, 348);
+            this.addEdge.Name = "addEdge";
+            this.addEdge.Size = new System.Drawing.Size(75, 75);
+            this.addEdge.TabIndex = 81;
+            this.addEdge.Text = "Thêm cạnh";
+            this.addEdge.UseVisualStyleBackColor = true;
+            this.addEdge.Click += new System.EventHandler(this.addEdge_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(240)))), ((int)(((byte)(241)))));
             this.ClientSize = new System.Drawing.Size(784, 561);
+            this.Controls.Add(this.addEdge);
+            this.Controls.Add(this.deleteVtx);
+            this.Controls.Add(this.addVtx);
             this.Controls.Add(this.logShow);
             this.Controls.Add(this.rtbLog);
             this.Controls.Add(this.start);
@@ -239,6 +286,9 @@
         public System.Windows.Forms.Label dinh;
         private System.Windows.Forms.ToolStripMenuItem fromFileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem fromFileToolStripMenuItem1;
+        private System.Windows.Forms.Button addVtx;
+        private System.Windows.Forms.Button deleteVtx;
+        private System.Windows.Forms.Button addEdge;
     }
 }
 

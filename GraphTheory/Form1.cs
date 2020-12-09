@@ -41,7 +41,7 @@ namespace GraphTheory
             *       MỞ ĐIỀU KHIỂN DUYỆT MA TRẬN
             * 
             ********************************************************************************************/
-            cbDHeadVertex.Enabled = cbDTailVertex.Enabled = start.Enabled = true; //Mở điều khiển duyệt ma trận
+            cbDHeadVertex.Enabled = cbDTailVertex.Enabled = start.Enabled = addVtx.Enabled = deleteVtx.Enabled = addEdge.Enabled = true; //Mở điều khiển duyệt ma trận
             cbDHeadVertex.Items.Clear();
             cbDTailVertex.Items.Clear();
             for (int k = 0; k < Graph.vertexNumber; k++)
@@ -173,6 +173,57 @@ namespace GraphTheory
                 graph = Graphics.FromImage(bm);
             }
             this.Resize -= Form1_Resize;
+        }
+
+        private void addVtx_Click(object sender, EventArgs e)
+        {
+            int[,] temp = new int[Graph.vertexNumber+1,Graph.vertexNumber+1];
+            for (int i = 0; i < Graph.vertexNumber; ++i)
+            {
+                for (int j = 0; j < Graph.vertexNumber; ++j)
+                {
+                    temp[i, j] = Graph.matrix[i, j];
+                }
+            }
+            for (int i = 0; i < Graph.vertexNumber+1; i++)
+            {
+                temp[i, Graph.vertexNumber] = 0;
+            }
+            for (int i = 0; i < Graph.vertexNumber + 1; i++)
+            {
+                temp[Graph.vertexNumber, i] = 0;
+            }
+            Graph.vertexNumber++;
+            Graph.matrix = temp;
+            generateGraph();
+            dinh.Text = "Số Đỉnh: " + Graph.vertexNumber.ToString();
+        }
+
+        private void deleteVtx_Click(object sender, EventArgs e)
+        {
+            if (Graph.vertexNumber < 2)
+            {
+                MessageBox.Show("Không thể xoá thêm nữa!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            int[,] temp = new int[Graph.vertexNumber - 1, Graph.vertexNumber - 1];
+            for (int i = 0; i < Graph.vertexNumber - 1; ++i)
+            {
+                for (int j = 0; j < Graph.vertexNumber - 1; ++j)
+                {
+                    temp[i, j] = Graph.matrix[i, j];
+                }
+            }
+            Graph.vertexNumber--;
+            Graph.matrix = temp;
+            generateGraph();
+            dinh.Text = "Số Đỉnh: " + Graph.vertexNumber.ToString();
+        }
+
+        private void addEdge_Click(object sender, EventArgs e)
+        {
+            connectVtx frm = new connectVtx(this);
+            frm.ShowDialog();
         }
     }
 }
