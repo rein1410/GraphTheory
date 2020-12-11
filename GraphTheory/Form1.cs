@@ -177,6 +177,11 @@ namespace GraphTheory
 
         private void addVtx_Click(object sender, EventArgs e)
         {
+            if (Graph.vertexNumber == 100)
+            {
+                MessageBox.Show("Ma trận tối đa 100 dỉnh !", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             int[,] temp = new int[Graph.vertexNumber+1,Graph.vertexNumber+1];
             for (int i = 0; i < Graph.vertexNumber; ++i)
             {

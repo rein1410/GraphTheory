@@ -25,13 +25,13 @@ namespace GraphTheory
         {
             try
             {
-                matrix.readGraph(richTextBox1.Text.Replace(",", ""), Convert.ToInt32(textBox1.Text), frm);
+                if (matrix.readGraph(richTextBox1.Text.Replace(",", ""), Convert.ToInt32(textBox1.Text), frm))
+                    this.Close();
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
-            this.Close();
         }
 
         private void textBox1_KeyDown(object sender, KeyEventArgs e)
