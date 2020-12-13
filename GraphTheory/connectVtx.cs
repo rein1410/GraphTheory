@@ -24,7 +24,7 @@ namespace GraphTheory
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e) //event nối cạnh
         {
 
             if (textBox1.Text == string.Empty)
@@ -49,7 +49,7 @@ namespace GraphTheory
             e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void button2_Click(object sender, EventArgs e) //event xoá cạnh
         {
             int i = Convert.ToInt32(cbDHeadVertex.SelectedItem);
             int j = Convert.ToInt32(cbDTailVertex.SelectedItem);

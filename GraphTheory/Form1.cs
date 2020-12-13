@@ -152,7 +152,7 @@ namespace GraphTheory
             printPicture.Image = bm;
             check = new Check(matrix);
             check.checkingConnection(matrix, draw, graph, bm, this);
-            Thread.Sleep(500);
+            //Thread.Sleep(200);
             BellmanFord FB = new BellmanFord(Graph.vertexNumber, Graph.matrix);
             int head = Convert.ToInt32(cbDHeadVertex.Text); //tạo biến nhận điểm đầu từ combobox
             int tail = Convert.ToInt32(cbDTailVertex.Text); //tạo biến nhận điểm cuối từ combobox
@@ -161,8 +161,8 @@ namespace GraphTheory
         }
         private void NewGraph(object sender, EventArgs e)
         {
-            AddMat am = new AddMat(this);
-            am.ShowDialog();
+            using (AddMat am = new AddMat(this))
+                am.ShowDialog();
         }
 
         private void Form1_Resize(object sender, EventArgs e) //sự kiện resize kích cỡ màn hình
@@ -200,6 +200,7 @@ namespace GraphTheory
             }
             Graph.vertexNumber++;
             Graph.matrix = temp;
+            enableControls();
             generateGraph();
             dinh.Text = "Số Đỉnh: " + Graph.vertexNumber.ToString();
         }
@@ -221,14 +222,21 @@ namespace GraphTheory
             }
             Graph.vertexNumber--;
             Graph.matrix = temp;
+            enableControls();
             generateGraph();
             dinh.Text = "Số Đỉnh: " + Graph.vertexNumber.ToString();
         }
 
         private void addEdge_Click(object sender, EventArgs e)
         {
-            connectVtx frm = new connectVtx(this);
-            frm.ShowDialog();
+            using (connectVtx frm = new connectVtx(this))
+                frm.ShowDialog();
+        }
+
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using(About frm = new About())
+                frm.ShowDialog();
         }
     }
 }

@@ -24,7 +24,7 @@ namespace GraphTheory
         public void DFSCheckConnection(int[] _index, int[] _notChecking, int _iconnect, int vertex, Graphics graph, Matrix matrix, Draw draw, Bitmap bm, Form1 f)
         {
             draw.drawCheckingVertex(graph, vertex); //vẽ lại đỉnh
-            Thread.Sleep(500);
+            Thread.Sleep(200);
             f.printPicture.Image = bm; //in hình ra
             Application.DoEvents();
 

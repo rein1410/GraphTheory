@@ -147,6 +147,7 @@
             this.MinimizeBox = false;
             this.Name = "connectVtx";
             this.ShowIcon = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Connect Vertex";
             this.ResumeLayout(false);
             this.PerformLayout();

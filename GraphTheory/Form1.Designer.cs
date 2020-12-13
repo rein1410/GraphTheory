@@ -46,6 +46,7 @@
             this.addVtx = new System.Windows.Forms.Button();
             this.deleteVtx = new System.Windows.Forms.Button();
             this.addEdge = new System.Windows.Forms.Button();
+            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.printPicture)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -79,7 +80,8 @@
             this.menuStrip1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(149)))), ((int)(((byte)(165)))), ((int)(((byte)(166)))));
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.saveGraphToolStripMenuItem,
-            this.openToolStripMenuItem});
+            this.openToolStripMenuItem,
+            this.aboutToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(784, 24);
@@ -88,6 +90,7 @@
             // 
             // saveGraphToolStripMenuItem
             // 
+            this.saveGraphToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ControlText;
             this.saveGraphToolStripMenuItem.Name = "saveGraphToolStripMenuItem";
             this.saveGraphToolStripMenuItem.Size = new System.Drawing.Size(78, 20);
             this.saveGraphToolStripMenuItem.Text = "Save Graph";
@@ -98,6 +101,7 @@
             this.openToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fromFileToolStripMenuItem,
             this.fromFileToolStripMenuItem1});
+            this.openToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ControlText;
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
             this.openToolStripMenuItem.Size = new System.Drawing.Size(80, 20);
             this.openToolStripMenuItem.Text = "Load Graph";
@@ -105,14 +109,14 @@
             // fromFileToolStripMenuItem
             // 
             this.fromFileToolStripMenuItem.Name = "fromFileToolStripMenuItem";
-            this.fromFileToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
+            this.fromFileToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.fromFileToolStripMenuItem.Text = "New Graph";
             this.fromFileToolStripMenuItem.Click += new System.EventHandler(this.NewGraph);
             // 
             // fromFileToolStripMenuItem1
             // 
             this.fromFileToolStripMenuItem1.Name = "fromFileToolStripMenuItem1";
-            this.fromFileToolStripMenuItem1.Size = new System.Drawing.Size(133, 22);
+            this.fromFileToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
             this.fromFileToolStripMenuItem1.Text = "From File..";
             this.fromFileToolStripMenuItem1.Click += new System.EventHandler(this.readGr_Click);
             // 
@@ -235,6 +239,16 @@
             this.addEdge.UseVisualStyleBackColor = true;
             this.addEdge.Click += new System.EventHandler(this.addEdge_Click);
             // 
+            // aboutToolStripMenuItem
+            // 
+            this.aboutToolStripMenuItem.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.aboutToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
+            this.aboutToolStripMenuItem.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(52, 20);
+            this.aboutToolStripMenuItem.Text = "About";
+            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -289,6 +303,7 @@
         private System.Windows.Forms.Button addVtx;
         private System.Windows.Forms.Button deleteVtx;
         private System.Windows.Forms.Button addEdge;
+        private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
     }
 }
 
