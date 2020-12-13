@@ -30,7 +30,7 @@ namespace GraphTheory
             }
         }
         //hàm nhập ma trận từ string
-        public bool readGraph(string rtb, int vertexNumber, Form1 frm)
+        public bool readGraph(string rtb, int vertexNumber, Form1 frm) //HÀM DÙNG ĐỀ ĐỌC ĐỒ THỊ
         {
             if (rtb.Replace(" ", "") == string.Empty) //Thoát nếu rỗng
             {
@@ -39,7 +39,6 @@ namespace GraphTheory
             }
             try
             {
-                //Đọc đồ thị và dán dữ liệu vào richTextBox.
                 using (StringReader sr = new StringReader(rtb))
                 {
                     if (vertexNumber < 2)
@@ -55,8 +54,8 @@ namespace GraphTheory
                     Graph.vertexNumber = vertexNumber;
                     string input = sr.ReadToEnd().Trim('\r', '\n');
                     int i = 0; int j = 0;
-                    Graph.matrix = new int[Graph.vertexNumber, Graph.vertexNumber];
-                    foreach (var row in input.Split('\n'))
+                    Graph.matrix = new int[Graph.vertexNumber, Graph.vertexNumber]; 
+                    foreach (var row in input.Split('\n')) //VÒNG LẶP GÁN DỮ LIỆU TỪNG CON SỐ TRONG MA TRẬN
                     {
                         j = 0;
                         foreach (var col in row.Trim().Split(' '))
@@ -78,7 +77,7 @@ namespace GraphTheory
                 return false;
             }
         }
-        public string exportGraph(int[,] array2D) //HÀM DÙNG ĐỂ XUẤT GRAPH TỪ HÌNH VẼ
+        public string exportGraph(int[,] array2D) //HÀM DÙNG ĐỂ GHI MẢNG MA TRẬN RA DẠNG STRING
         {
             string result = "";
             result += Graph.vertexNumber + "\n";

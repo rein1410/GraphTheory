@@ -25,7 +25,7 @@ namespace GraphTheory
         {
             try
             {
-                if (matrix.readGraph(richTextBox1.Text.Replace(",", ""), Convert.ToInt32(textBox1.Text), frm))
+                if (matrix.readGraph(richTextBox1.Text.Replace(",", ""), Convert.ToInt32(textBox1.Text), frm)) //lệnh tạo graph
                     this.Close();
             }
             catch (Exception ex)
@@ -34,7 +34,7 @@ namespace GraphTheory
             }
         }
 
-        private void textBox1_KeyDown(object sender, KeyEventArgs e)
+        private void textBox1_KeyDown(object sender, KeyEventArgs e) //event keydown enter cho textbox
         {
             if (e.KeyCode == Keys.Enter)
             {
@@ -43,7 +43,7 @@ namespace GraphTheory
             }
         }
 
-        private void richTextBox1_KeyDown(object sender, KeyEventArgs e)
+        private void richTextBox1_KeyDown(object sender, KeyEventArgs e) //event keydown shift + enter cho richtextbox
         {
             if (e.Modifiers == Keys.Shift && e.KeyCode == Keys.Enter)
             {

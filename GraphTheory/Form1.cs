@@ -18,8 +18,8 @@ namespace GraphTheory
         {
             InitializeComponent();
             Directory.CreateDirectory("Graphs");
-            bm = new Bitmap(this.printPicture.Width, this.printPicture.Height); //tạo 1 cái bm để hiển thị ảnh theo kích thước của khung picturebox màu đen tên là "printPicture"
-            graph = Graphics.FromImage(bm); //dùng graphics để chỉnh sửa rồi hiện thị lên picturebox
+            bm = new Bitmap(this.printPicture.Width, this.printPicture.Height); //tạo 1 bm hiển thị ảnh theo kích thước của khung picturebox
+            graph = Graphics.FromImage(bm); //tạo 1 graphics trên ảnh được chọn
         }
 
         /********************************************************************************************
@@ -64,7 +64,7 @@ namespace GraphTheory
             draw.drawGraph(matrix._iMatrix, matrix._iNMatrix, graph);
             printPicture.Image = bm;
         }
-        private void writeGr_Click(object sender, EventArgs e)
+        private void writeGr_Click(object sender, EventArgs e) //event click lưu đồ thị
         {
             if (Graph.matrix == null)
             {
@@ -73,7 +73,7 @@ namespace GraphTheory
             }    
             try
             {
-                using (SaveFileDialog sfd = new SaveFileDialog())
+                using (SaveFileDialog sfd = new SaveFileDialog()) //mở savefiledialog
                 {
                     sfd.InitialDirectory = Application.StartupPath + "\\Graphs\\";
                     sfd.Filter = "Text Document|*.txt";
@@ -81,7 +81,7 @@ namespace GraphTheory
                     {
                         Stream fs = sfd.OpenFile();
                         StreamWriter sw = new StreamWriter(fs);
-                        sw.Write(matrix.exportGraph(Graph.matrix));
+                        sw.Write(matrix.exportGraph(Graph.matrix)); //lệnh viết ra đồ thị từ mảng
                         sw.Close();
                         fs.Close();
                     }    
@@ -146,7 +146,7 @@ namespace GraphTheory
         }
         private void start_Click(object sender, EventArgs e)
         {
-
+            rtbLog.Text = string.Empty; //Xoá log cũ
             graph.Clear(Color.Black);
             draw.drawGraph(matrix._iMatrix, matrix._iNMatrix, graph);
             printPicture.Image = bm;
@@ -156,7 +156,7 @@ namespace GraphTheory
             BellmanFord FB = new BellmanFord(Graph.vertexNumber, Graph.matrix);
             int head = Convert.ToInt32(cbDHeadVertex.Text); //tạo biến nhận điểm đầu từ combobox
             int tail = Convert.ToInt32(cbDTailVertex.Text); //tạo biến nhận điểm cuối từ combobox
-            FB.FordBellman(matrix, rtbLog, head, tail, graph, draw, bm, vertex, this);
+            FB.FordBellman(matrix, rtbLog, head, tail, graph, draw, bm, vertex, this); //thuật toán fb
             MessageBox.Show("Đã duyệt xong!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
         private void NewGraph(object sender, EventArgs e)
@@ -165,19 +165,19 @@ namespace GraphTheory
             am.ShowDialog();
         }
 
-        private void Form1_Resize(object sender, EventArgs e)
+        private void Form1_Resize(object sender, EventArgs e) //sự kiện resize kích cỡ màn hình
         {
             if (WindowState == FormWindowState.Maximized)
             {
-                bm = new Bitmap(this.printPicture.Width, this.printPicture.Height);
-                graph = Graphics.FromImage(bm);
+                bm = new Bitmap(this.printPicture.Width, this.printPicture.Height); //tạo bitmap với size mới
+                graph = Graphics.FromImage(bm); //load graphics từ bitmap
             }
-            this.Resize -= Form1_Resize;
+            this.Resize -= Form1_Resize; //loại event này khỏi Form 1
         }
 
-        private void addVtx_Click(object sender, EventArgs e)
+        private void addVtx_Click(object sender, EventArgs e) //tạo ma trận mới N+1xN+1
         {
-            if (Graph.vertexNumber == 100)
+            if (Graph.vertexNumber == 100) //thoát nếu đã đạt 100 đỉnh
             {
                 MessageBox.Show("Ma trận tối đa 100 dỉnh !", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -204,7 +204,7 @@ namespace GraphTheory
             dinh.Text = "Số Đỉnh: " + Graph.vertexNumber.ToString();
         }
 
-        private void deleteVtx_Click(object sender, EventArgs e)
+        private void deleteVtx_Click(object sender, EventArgs e) //tạo ma trận mới N-1xN-1
         {
             if (Graph.vertexNumber < 2)
             {

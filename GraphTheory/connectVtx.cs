@@ -48,5 +48,15 @@ namespace GraphTheory
         {
             e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            int i = Convert.ToInt32(cbDHeadVertex.SelectedItem);
+            int j = Convert.ToInt32(cbDTailVertex.SelectedItem);
+            Graph.matrix[i, j] = 0;
+            Graph.matrix[j, i] = 0;
+            frm.generateGraph();
+            this.Close();
+        }
     }
 }
