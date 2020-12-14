@@ -147,9 +147,6 @@ namespace GraphTheory
         private void start_Click(object sender, EventArgs e)
         {
             rtbLog.Text = string.Empty; //Xoá log cũ
-            graph.Clear(Color.Black);
-            draw.drawGraph(matrix._iMatrix, matrix._iNMatrix, graph);
-            printPicture.Image = bm;
             check = new Check(matrix);
             check.checkingConnection(matrix, draw, graph, bm, this);
             //Thread.Sleep(200);
@@ -227,7 +224,7 @@ namespace GraphTheory
             dinh.Text = "Số Đỉnh: " + Graph.vertexNumber.ToString();
         }
 
-        private void addEdge_Click(object sender, EventArgs e)
+        private void addEdge_Click(object sender, EventArgs e) //mở form thêm cạnh
         {
             using (connectVtx frm = new connectVtx(this))
                 frm.ShowDialog();
