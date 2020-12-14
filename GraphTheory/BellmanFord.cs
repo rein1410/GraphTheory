@@ -32,9 +32,7 @@ namespace GraphTheory
                 for (int j = 0; j < vertexNum; j++)
                 {
                     if (matrixN[i, j] == 0) //kiểm tra nếu ma trận = 0 
-                    {
                         matrixN[i, j] = MAX; //thì gán bằng vô cùng
-                    }
                 }
             }
         }
@@ -62,7 +60,6 @@ namespace GraphTheory
                     }
                 }
             }
-            rtb.Text = "";
             move(D, before, x, y, rtb, matrix, graph, draw, bm, vertex, f); //thực hiện vẽ đường đi
         }
 
@@ -91,7 +88,7 @@ namespace GraphTheory
             rtb.Text += "Đường đi ngắn nhất từ " + m.ToString() + " đến " + n.ToString() + " với các đỉnh " + "là:";
 
             draw.drawGraph(matrix._iMatrix, matrix._iNMatrix, graph); //vẽ đồ thị ra
-            Thread.Sleep(500); //điều chỉnh tốc độ xuất hiện
+            Thread.Sleep(200); //điều chỉnh tốc độ xuất hiện
 
             for (int j = i - 1; j >= 0; j--)
             {

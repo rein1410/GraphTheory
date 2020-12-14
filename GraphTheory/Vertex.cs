@@ -13,7 +13,7 @@ namespace GraphTheory
         public PointF _pVertex;//đỉnh
         public Color _cColor1 = Color.GreenYellow; //tạo 1 lớp màu cho đỉnh đó
         public Color _cColor2 = Color.Gray; //tạo lớp màu thứ 2
-        public Color _cColor3 = Color.GreenYellow; //tạo lớp màu thứ 3
+        public Color _cColor3 = Color.LightSlateGray; //tạo lớp màu thứ 3
         public int _iVerNum; //số trên đỉnh
         public int _isDel = 0; //cho biết đã bị xóa chưa, 1 - đã bị xóa, 0 - chưa bị xóa
 
@@ -47,7 +47,7 @@ namespace GraphTheory
             int div = nMatrix / 4, mod = nMatrix % 4, flag = 0, vertexNumber = 0; //tạo biến để lấy các khoảng cách nhất định
             for (int i = 0; i < mod; i++)
             {
-                float range = 240 / (div + 2); //tính khoảng cách theo độ rộng
+                float range = 310 / (div + 2); //tính khoảng cách theo độ rộng
                 switch (flag) //dùng switch case để xét từng trường hợp
                 {
                     case 0:
@@ -62,7 +62,7 @@ namespace GraphTheory
                     case 1:
                         for (int j = 0; j < div + 1; j++)
                         {
-                            x = 240 - 20 * j;
+                            x = 310 - 20 * j;
                             y = 20 + range * (j + 1);
                             vertex[vertexNumber] = new Vertex(x, y, vertexNumber++);
                             flag = 2;
@@ -71,8 +71,8 @@ namespace GraphTheory
                     case 2:
                         for (int j = 0; j < div + 1; j++)
                         {
-                            x = 250 - range * (j + 1);
-                            y = 240 - 20 * j;
+                            x = 320 - range * (j + 1);
+                            y = 310 - 20 * j;
                             vertex[vertexNumber] = new Vertex(x, y, vertexNumber++);
                             flag = 3;
                         }
@@ -81,7 +81,7 @@ namespace GraphTheory
                         for (int j = 0; j < div + 1; j++)
                         {
                             x = 20 + 20 * j;
-                            y = 240 - range * (j + 1);
+                            y = 310 - range * (j + 1);
                             vertex[vertexNumber] = new Vertex(x, y, vertexNumber++);
                             flag = 0;
                         }
@@ -91,7 +91,7 @@ namespace GraphTheory
 
             for (int i = 0; i < 4 - mod; i++)
             {
-                float range = 240 / (div + 1);
+                float range = 310 / (div + 1);
                 switch (flag)
                 {
                     case 0:
@@ -106,7 +106,7 @@ namespace GraphTheory
                     case 1:
                         for (int j = 0; j < div; j++)
                         {
-                            x = 250 - 20 * j;
+                            x = 320 - 20 * j;
                             y = 20 + range * (j + 1);
                             vertex[vertexNumber] = new Vertex(x, y, vertexNumber++);
                             flag = 2;
@@ -115,8 +115,8 @@ namespace GraphTheory
                     case 2:
                         for (int j = 0; j < div; j++)
                         {
-                            x = 250 - range * (j + 1);
-                            y = 240 - 20 * j;
+                            x = 320 - range * (j + 1);
+                            y = 310 - 20 * j;
                             vertex[vertexNumber] = new Vertex(x, y, vertexNumber++);
                             flag = 3;
                         }
@@ -125,7 +125,7 @@ namespace GraphTheory
                         for (int j = 0; j < div; j++)
                         {
                             x = 20 + 20 * j;
-                            y = 240 - range * (j + 1);
+                            y = 310 - range * (j + 1);
                             vertex[vertexNumber] = new Vertex(x, y, vertexNumber++);
                             flag = 0;
                         }

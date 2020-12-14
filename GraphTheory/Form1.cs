@@ -18,8 +18,8 @@ namespace GraphTheory
         {
             InitializeComponent();
             Directory.CreateDirectory("Graphs");
-            bm = new Bitmap(this.printPicture.Width, this.printPicture.Height); //tạo 1 cái bm để hiển thị ảnh theo kích thước của khung picturebox màu đen tên là "printPicture"
-            graph = Graphics.FromImage(bm); //dùng graphics để chỉnh sửa rồi hiện thị lên picturebox
+            bm = new Bitmap(this.printPicture.Width, this.printPicture.Height); //tạo 1 bm hiển thị ảnh theo kích thước của khung picturebox
+            graph = Graphics.FromImage(bm); //tạo 1 graphics trên ảnh được chọn
         }
 
         /********************************************************************************************
@@ -34,7 +34,6 @@ namespace GraphTheory
         Bitmap bm;
         Check check;
         public bool mouseLeft = true; //BIẾN KIỂM TRA XEM BẠN ĐÃ "THẢ" CHUỘT RA CHƯA HAY VẪN CÒN NHẤP GIỮ CHUỘT.
-        string checkMatch;
         public void enableControls()
         {
             /********************************************************************************************
@@ -42,7 +41,7 @@ namespace GraphTheory
             *       MỞ ĐIỀU KHIỂN DUYỆT MA TRẬN
             * 
             ********************************************************************************************/
-            cbDHeadVertex.Enabled = cbDTailVertex.Enabled = start.Enabled = true; //Mở điều khiển duyệt ma trận
+            cbDHeadVertex.Enabled = cbDTailVertex.Enabled = start.Enabled = addVtx.Enabled = deleteVtx.Enabled = addEdge.Enabled = true; //Mở điều khiển duyệt ma trận
             cbDHeadVertex.Items.Clear();
             cbDTailVertex.Items.Clear();
             for (int k = 0; k < Graph.vertexNumber; k++)
@@ -59,16 +58,13 @@ namespace GraphTheory
             *       HIỂN THỊ ĐỒ THỊ LÊN KHUNG PICTUREBOX
             * 
             ********************************************************************************************/
-            matrix = new Matrix();
             matrix.inputMatrixFromGRAPHClass();
             graph.Clear(Color.Black);
             draw = new Draw(matrix);
             draw.drawGraph(matrix._iMatrix, matrix._iNMatrix, graph);
             printPicture.Image = bm;
-            printPicture.Show();
-            printPicture.Enabled = true;
         }
-        private void writeGr_Click(object sender, EventArgs e)
+        private void writeGr_Click(object sender, EventArgs e) //event click lưu đồ thị
         {
             if (Graph.matrix == null)
             {
@@ -77,7 +73,7 @@ namespace GraphTheory
             }    
             try
             {
-                using (SaveFileDialog sfd = new SaveFileDialog())
+                using (SaveFileDialog sfd = new SaveFileDialog()) //mở savefiledialog
                 {
                     sfd.InitialDirectory = Application.StartupPath + "\\Graphs\\";
                     sfd.Filter = "Text Document|*.txt";
@@ -85,7 +81,7 @@ namespace GraphTheory
                     {
                         Stream fs = sfd.OpenFile();
                         StreamWriter sw = new StreamWriter(fs);
-                        sw.Write(matrix.exportGraph(Graph.matrix));
+                        sw.Write(matrix.exportGraph(Graph.matrix)); //lệnh viết ra đồ thị từ mảng
                         sw.Close();
                         fs.Close();
                     }    
@@ -97,20 +93,27 @@ namespace GraphTheory
             }
         }
 
-        private void readGr_Click(object sender, EventArgs e)
+        private void readGr_Click(object sender, EventArgs e) //HÀM MỞ ĐỒ THỊ TỪ FILE
         {
             try
             {
-                //Đọc đồ thị và dán dữ liệu vào richTextBox.
                 using (OpenFileDialog ofd = new OpenFileDialog())
                 {
+                    string input;
+                    int vertexNumber;
+                    string Mat;
+                    ofd.InitialDirectory = Application.StartupPath + "\\Graphs\\";
+                    ofd.Filter = "Text Files (*.txt)|*.txt";
                     if (ofd.ShowDialog() == DialogResult.OK)
                     {
                         StreamReader sr = new StreamReader(ofd.FileName);
-                        richTextBox1.Text = File.ReadAllText(ofd.FileName);
+                        input = File.ReadAllText(ofd.FileName); //đọc input
+                        StringReader str = new StringReader(input); //khai biến stringreader
+                        vertexNumber = Convert.ToInt32(sr.ReadLine()); //đọc số đỉnh
+                        Mat = sr.ReadToEnd().Trim('\r', '\n'); //đọc ma trận
                     }
-                    matrix.readGraph(richTextBox1.Text.Replace(",",""), this); //Đọc ma trận từ richtextbox
-                    checkMatch = richTextBox1.Text; //tránh reload lại đồ thị nếu trùng
+                    else return;
+                    matrix.readGraph(Mat.Replace(",",""), vertexNumber, this);
                 }
             }
             catch (Exception ex)
@@ -143,33 +146,94 @@ namespace GraphTheory
         }
         private void start_Click(object sender, EventArgs e)
         {
-
-            graph.Clear(Color.Black);
-            draw.drawGraph(matrix._iMatrix, matrix._iNMatrix, graph);
-            printPicture.Image = bm;
+            rtbLog.Text = string.Empty; //Xoá log cũ
             check = new Check(matrix);
             check.checkingConnection(matrix, draw, graph, bm, this);
-            Thread.Sleep(500);
+            //Thread.Sleep(200);
             BellmanFord FB = new BellmanFord(Graph.vertexNumber, Graph.matrix);
             int head = Convert.ToInt32(cbDHeadVertex.Text); //tạo biến nhận điểm đầu từ combobox
             int tail = Convert.ToInt32(cbDTailVertex.Text); //tạo biến nhận điểm cuối từ combobox
-            FB.FordBellman(matrix, rtbLog, head, tail, graph, draw, bm, vertex, this);
+            FB.FordBellman(matrix, rtbLog, head, tail, graph, draw, bm, vertex, this); //thuật toán fb
             MessageBox.Show("Đã duyệt xong!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
-        private void loadGr_Click(object sender, EventArgs e)
+        private void NewGraph(object sender, EventArgs e)
         {
-            try
+            using (AddMat am = new AddMat(this))
+                am.ShowDialog();
+        }
+
+        private void Form1_Resize(object sender, EventArgs e) //sự kiện resize kích cỡ màn hình
+        {
+            if (WindowState == FormWindowState.Maximized)
             {
-                if (richTextBox1.Text != checkMatch)
+                bm = new Bitmap(this.printPicture.Width, this.printPicture.Height); //tạo bitmap với size mới
+                graph = Graphics.FromImage(bm); //load graphics từ bitmap
+            }
+            this.Resize -= Form1_Resize; //loại event này khỏi Form 1
+        }
+
+        private void addVtx_Click(object sender, EventArgs e) //tạo ma trận mới N+1xN+1
+        {
+            if (Graph.vertexNumber == 100) //thoát nếu đã đạt 100 đỉnh
+            {
+                MessageBox.Show("Ma trận tối đa 100 dỉnh !", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            int[,] temp = new int[Graph.vertexNumber+1,Graph.vertexNumber+1];
+            for (int i = 0; i < Graph.vertexNumber; ++i)
+            {
+                for (int j = 0; j < Graph.vertexNumber; ++j)
                 {
-                    matrix.readGraph(richTextBox1.Text.Replace(",",""), this);
-                    checkMatch = richTextBox1.Text; //tránh reload lại đồ thị nếu trùng
+                    temp[i, j] = Graph.matrix[i, j];
                 }
             }
-            catch (Exception ex)
+            for (int i = 0; i < Graph.vertexNumber+1; i++)
             {
-                MessageBox.Show(ex.Message);
+                temp[i, Graph.vertexNumber] = 0;
             }
+            for (int i = 0; i < Graph.vertexNumber + 1; i++)
+            {
+                temp[Graph.vertexNumber, i] = 0;
+            }
+            Graph.vertexNumber++;
+            Graph.matrix = temp;
+            enableControls();
+            generateGraph();
+            dinh.Text = "Số Đỉnh: " + Graph.vertexNumber.ToString();
+        }
+
+        private void deleteVtx_Click(object sender, EventArgs e) //tạo ma trận mới N-1xN-1
+        {
+            if (Graph.vertexNumber < 2)
+            {
+                MessageBox.Show("Không thể xoá thêm nữa!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            int[,] temp = new int[Graph.vertexNumber - 1, Graph.vertexNumber - 1];
+            for (int i = 0; i < Graph.vertexNumber - 1; ++i)
+            {
+                for (int j = 0; j < Graph.vertexNumber - 1; ++j)
+                {
+                    temp[i, j] = Graph.matrix[i, j];
+                }
+            }
+            Graph.vertexNumber--;
+            Graph.matrix = temp;
+            enableControls();
+            generateGraph();
+            dinh.Text = "Số Đỉnh: " + Graph.vertexNumber.ToString();
+        }
+
+        private void addEdge_Click(object sender, EventArgs e) //mở form thêm cạnh
+        {
+            using (connectVtx frm = new connectVtx(this))
+                frm.ShowDialog();
+        }
+
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using(About frm = new About())
+                frm.ShowDialog();
         }
     }
 }

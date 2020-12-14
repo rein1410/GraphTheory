@@ -30,34 +30,32 @@ namespace GraphTheory
             }
         }
         //hàm nhập ma trận từ string
-        public void readGraph(string rtb, Form1 frm)
+        public bool readGraph(string rtb, int vertexNumber, Form1 frm) //HÀM DÙNG ĐỀ ĐỌC ĐỒ THỊ
         {
             if (rtb.Replace(" ", "") == string.Empty) //Thoát nếu rỗng
             {
                 MessageBox.Show("Ma trận trống !", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
+                return false;
             }
             try
             {
-                //Đọc đồ thị và dán dữ liệu vào richTextBox.
                 using (StringReader sr = new StringReader(rtb))
                 {
-                    int vertexNumber = Convert.ToInt32(sr.ReadLine());
                     if (vertexNumber < 2)
                     {
                         MessageBox.Show("Ma trận phải có ít nhất 2 dỉnh !", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return;
+                        return false;
                     }
                     if (vertexNumber > 100)
                     {
                         MessageBox.Show("Ma trận tối đa 100 dỉnh !", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return;
+                        return false;
                     }
                     Graph.vertexNumber = vertexNumber;
                     string input = sr.ReadToEnd().Trim('\r', '\n');
                     int i = 0; int j = 0;
-                    Graph.matrix = new int[Graph.vertexNumber, Graph.vertexNumber];
-                    foreach (var row in input.Split('\n'))
+                    Graph.matrix = new int[Graph.vertexNumber, Graph.vertexNumber]; 
+                    foreach (var row in input.Split('\n')) //VÒNG LẶP GÁN DỮ LIỆU TỪNG CON SỐ TRONG MA TRẬN
                     {
                         j = 0;
                         foreach (var col in row.Trim().Split(' '))
@@ -70,15 +68,16 @@ namespace GraphTheory
                     frm.enableControls();
                     frm.generateGraph();
                     frm.dinh.Text = "Số Đỉnh: " + Graph.vertexNumber.ToString();
-                    frm.StatusLbl.Text = "Đọc file thành công. ";
+                    return true;
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+                return false;
             }
         }
-        public string exportGraph(int[,] array2D) //HÀM DÙNG ĐỂ XUẤT GRAPH TỪ HÌNH VẼ
+        public string exportGraph(int[,] array2D) //HÀM DÙNG ĐỂ GHI MẢNG MA TRẬN RA DẠNG STRING
         {
             string result = "";
             result += Graph.vertexNumber + "\n";
