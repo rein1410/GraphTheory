@@ -60,7 +60,7 @@ namespace GraphTheory
             {
                 for (int k = 0; k < nMatrix; k++)
                 {
-                    if (matrix[j, k] != matrix[0, 0] && j < k)
+                    if (matrix[j, k] != matrix[0, 0] && j < k && matrix[j, k] != 0)
                     {
                         _eEdge[c] = new Edge(_vVertex[j], _vVertex[k], matrix[j, k]); //gán biến cạnh từ class
                         drawEdge(graph, Color.DarkSlateGray, _eEdge[c]); //vẽ cạnh
