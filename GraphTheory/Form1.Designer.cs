@@ -36,6 +36,7 @@
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.fromFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.fromFileToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.start = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.cbDHeadVertex = new System.Windows.Forms.ComboBox();
@@ -46,7 +47,6 @@
             this.addVtx = new System.Windows.Forms.Button();
             this.deleteVtx = new System.Windows.Forms.Button();
             this.addEdge = new System.Windows.Forms.Button();
-            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.printPicture)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -109,16 +109,26 @@
             // fromFileToolStripMenuItem
             // 
             this.fromFileToolStripMenuItem.Name = "fromFileToolStripMenuItem";
-            this.fromFileToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.fromFileToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
             this.fromFileToolStripMenuItem.Text = "New Graph";
             this.fromFileToolStripMenuItem.Click += new System.EventHandler(this.NewGraph);
             // 
             // fromFileToolStripMenuItem1
             // 
             this.fromFileToolStripMenuItem1.Name = "fromFileToolStripMenuItem1";
-            this.fromFileToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.fromFileToolStripMenuItem1.Size = new System.Drawing.Size(133, 22);
             this.fromFileToolStripMenuItem1.Text = "From File..";
             this.fromFileToolStripMenuItem1.Click += new System.EventHandler(this.readGr_Click);
+            // 
+            // aboutToolStripMenuItem
+            // 
+            this.aboutToolStripMenuItem.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.aboutToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
+            this.aboutToolStripMenuItem.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(52, 20);
+            this.aboutToolStripMenuItem.Text = "About";
+            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
             // start
             // 
@@ -239,16 +249,6 @@
             this.addEdge.UseVisualStyleBackColor = true;
             this.addEdge.Click += new System.EventHandler(this.addEdge_Click);
             // 
-            // aboutToolStripMenuItem
-            // 
-            this.aboutToolStripMenuItem.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.aboutToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(52, 20);
-            this.aboutToolStripMenuItem.Text = "About";
-            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -274,6 +274,7 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
             this.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "GraphTheory";
             this.Resize += new System.EventHandler(this.Form1_Resize);
